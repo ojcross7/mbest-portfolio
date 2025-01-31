@@ -399,3 +399,36 @@
 					});
 
 })(jQuery);
+
+// Slider Functionality
+document.addEventListener("DOMContentLoaded", function () {
+    const sliders = document.querySelectorAll(".slider");
+
+    sliders.forEach((slider) => {
+        const slides = slider.querySelector(".slides");
+        const prevButton = slider.querySelector(".prev");
+        const nextButton = slider.querySelector(".next");
+        const images = slides.querySelectorAll("img");
+        let currentIndex = 0;
+
+        // Function to show the current slide
+        function showSlide(index) {
+            slides.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        // Event listener for the "Previous" button
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            showSlide(currentIndex);
+        });
+
+        // Event listener for the "Next" button
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            showSlide(currentIndex);
+        });
+
+        // Show the first slide initially
+        showSlide(currentIndex);
+    });
+});
